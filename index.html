@@ -6,6 +6,9 @@
     <title>Now 24 Hour Locksmiths | Clydebank & Glasgow | Emergency Locksmith</title>
     <meta name="description" content="Your trusted 24/7 emergency locksmith based in Clydebank, serving Glasgow and beyond for over 10 years. Fast response for lockouts, repairs, and security upgrades.">
     
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M75 50V35C75 21.1929 63.8071 10 50 10C36.1929 10 25 21.1929 25 35V50' fill='none' stroke='%239CA3AF' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M15 45H50V90C50 92.7614 47.7614 95 45 95H20C17.2386 95 15 92.7614 15 90V45Z' fill='%233B82F6'/%3E%3Cpath d='M50 45H85V90C85 92.7614 82.7614 95 80 95H55C52.2386 95 50 92.7614 50 90V45Z' fill='%23EF4444'/%3E%3C/svg%3E" type="image/svg+xml">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -23,7 +26,7 @@
             background-color: #111827; /* Dark Gray */
         }
         .hero-bg {
-            background-image: linear-gradient(rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.85)), url('https://images.unsplash.com/photo-1583213962622-80b1b39893a7?q=80&w=2070&auto=format&fit=crop');
+            background-image: linear-gradient(rgba(17, 24, 39, 0.85), rgba(17, 24, 39, 0.85)), url('https://images.unsplash.com/photo-1583213962622-80b1-b39893a7?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
@@ -42,9 +45,23 @@
             border-color: #FBBF24; /* Amber */
             transform: translateY(-5px);
         }
+        /* Animation for the main location dot on the map */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.7;
+            }
+        }
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
-<body class="text-gray-200">
+<body class="text-gray-200 pb-20 md:pb-0"> <!-- Added padding-bottom for mobile to prevent overlap with sticky button -->
 
     <!-- Header & Hero Section -->
     <header id="home" class="hero-bg text-white">
@@ -190,9 +207,53 @@
                 </div>
             </div>
         </section>
+
+        <!-- Service Area Section -->
+        <section id="service-area" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Our Coverage Area</h2>
+                    <p class="mt-2 text-gray-400">Rapid response across Glasgow & the West of Scotland.</p>
+                    <div class="mt-4 w-24 h-1 bg-amber-400 mx-auto rounded"></div>
+                </div>
+                <div class="max-w-4xl mx-auto bg-gray-800 p-4 sm:p-8 rounded-lg">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-labelledby="mapTitle" role="img">
+                        <title id="mapTitle">Stylized map of Glasgow and West of Scotland service area</title>
+                        <!-- Abstract landmass shape -->
+                        <path d="M 20,150 Q 50,80 100,100 T 200,120 Q 250,140 300,100 T 380,130 L 380,280 Q 300,250 200,260 T 100,250 Q 50,240 20,280 Z" fill="#374151" />
+                        <!-- Abstract river shape -->
+                        <path d="M 0,200 Q 80,180 150,190 T 300,180 Q 350,185 400,170" stroke="#1F2937" stroke-width="15" fill="none" />
+                        
+                        <!-- Locations -->
+                        <g class="text-xs sm:text-sm font-semibold fill-gray-200">
+                            <!-- Glasgow -->
+                            <circle cx="210" cy="150" r="6" fill="#FBBF24" />
+                            <text x="220" y="155">Glasgow</text>
+                            
+                            <!-- Clydebank (Main Location with Pulse) -->
+                            <circle cx="155" cy="160" r="10" fill="#FBBF24" fill-opacity="0.5" class="pulse-dot" />
+                            <circle cx="155" cy="160" r="6" fill="#FBBF24" />
+                            <text x="165" y="165" class="fill-white font-bold">Clydebank (Base)</text>
+                            
+                            <!-- Paisley -->
+                            <circle cx="170" cy="210" r="6" fill="#FBBF24" />
+                            <text x="180" y="215">Paisley</text>
+                            
+                            <!-- Dumbarton -->
+                            <circle cx="100" cy="175" r="6" fill="#FBBF24" />
+                            <text x="35" y="180">Dumbarton</text>
+                            
+                            <!-- Bearsden -->
+                            <circle cx="175" cy="125" r="6" fill="#FBBF24" />
+                            <text x="185" y="130">Bearsden</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
         
         <!-- Testimonials Section -->
-        <section id="testimonials" class="py-20 bg-gray-900">
+        <section id="testimonials" class="py-20 bg-gray-800">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">What Our Customers Say</h2>
@@ -245,6 +306,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Sticky Call Button for Mobile -->
+    <a href="tel:07827318363" class="md:hidden fixed bottom-0 left-0 right-0 bg-amber-400 text-gray-900 p-4 text-center text-lg font-bold shadow-2xl z-50 flex items-center justify-center">
+        <i data-lucide="phone-call" class="w-6 h-6 mr-3"></i>
+        Tap to Call Now for a Free Quote
+    </a>
 
     <script>
         // Initialize Lucide icons
